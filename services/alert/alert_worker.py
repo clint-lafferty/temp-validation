@@ -2,7 +2,7 @@ import os
 import time
 from sqlalchemy import create_engine, text
 
-DATABASE_URL = os.getenv('DATABASE_URL', 'sqlite:///temp_readings.db')
+DATABASE_URL = os.getenv('DATABASE_URL', 'postgresql://user:password@localhost:5432/temp_db')
 def check_for_alerts():
     engine = create_engine(DATABASE_URL)
     with engine.connect() as connection:

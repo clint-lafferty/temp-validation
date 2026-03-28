@@ -1,0 +1,54 @@
+services:
+  ingestor:
+    build: ./services/ingestor
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=development
+      - SQLALCHEMY_DATABASE_URI=sqlite:///ingestor.db
+    volumes:
+      - ./services/ingestor:/app
+    depends_on:
+      db:
+        condition: service_healthy
+
+  simulator:
+    build: ./services/simulator
+    ports:
+      - "6000:6000"
+    environment:
+      - SIMULATOR_ENV=development
+    volumes:
+      - ./services/simulator:/app
+    depends_on:
+      db:
+        condition: service_healthy
+  
+  alert:
+    build: ./services/alert
+    ports:
+      - "7000:7000"
+    environment:
+      - ALERT_ENV=development
+    volumes:
+      - ./services/alert:/app
+    depends_on:
+      db:
+        condition: service_healthy
+  
+  db:
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=ingestor
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 3s 
+      retries: 5
+      start_period: 30s
