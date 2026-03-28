@@ -1,19 +1,19 @@
 from flask import Flask, request, jsonify
-from .models import db, TempReading
+from models import db, TempReading
 import os
 
 def create_app():
     app = Flask(__name__)
     
     # Configure the database URI
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///temp_readings.db'
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'postgresql://postgres:postgres@db:5432/ingestor')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     
     TEMP_HIGH = float(os.getenv('TEMP_THRESHOLD_CRITICAL'))
     TEMP_LOW = float(os.getenv('TEMP_THRESHOLD_low'))
 
     # Initialize the database
-    from .models import db
+    from models import db
     db.init_app(app)
     
     # Create the database tables
