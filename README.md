@@ -11,7 +11,7 @@ The purpose of this project is to showcase skills relevant to DevOps and Cloud E
 
 ## 📂 Project Structure
 ```text
-.
+
 ├── docker-compose.yml
 ├── .env.example
 ├── services/
@@ -22,6 +22,7 @@ The purpose of this project is to showcase skills relevant to DevOps and Cloud E
 │   └── test_pipeline.sh  # Validation Script
 └── README.md
 
+`
 ### Development Enironment:
 The first step was setup the environment that I would use for development. I converted a custom built gaming PC into a level 1 Hypervisor; using ESXi. On this I created a VM of Ubuntu Server 24.04 as the machine for housing source code and testing Docker Compose orchestration. After setting up the server I created the GitHub repository with two branches Main & Dev, cloning the blank (only containing this README and a .gitignore) repo in order to establish a connection. 
 
