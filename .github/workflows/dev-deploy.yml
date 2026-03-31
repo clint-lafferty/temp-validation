@@ -17,5 +17,5 @@ jobs:
 
       - name: Sync and Rebuild Containers
         run: |
-          rsync -avz --delete ./ ${{ secrets.DEV_USER }}@${{ secrets.DEV_IP }}:/opt/temp-validator/
-          ssh ${{ secrets.DEV_USER }}@${{ secrets.DEV_IP }} "cd ~/temp-validator && docker compose down && docker compose up -d --build"
+          rsync -avz --delete ./ ${{ secrets.DEV_USER }}@${{ secrets.DEV_IP }}:/opt/temp-validation/
+          ssh ${{ secrets.DEV_USER }}@${{ secrets.DEV_IP }} "cd ~/temp-validation && docker compose down && docker compose up -d --build"
