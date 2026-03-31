@@ -18,6 +18,6 @@ jobs:
       - name: Sync and Rebuild Containers
         run: |
           # Add --exclude '__pycache__/' to the list
-          rsync -avz --delete --exclude 'pgdata/' --exclude '.git/' --exclude '.env' --exclude '__pycache__/' ./ ${{ secrets.DEV_USER }}@${{ secrets.DEV_IP }}:/opt/temp-validation/
+          rsync -avzc --delete --exclude 'pgdata/' --exclude '.git/' --exclude '.env' --exclude '__pycache__/' ./ ${{ secrets.DEV_USER }}@${{ secrets.DEV_IP }}:/opt/temp-validation/
           
           ssh ${{ secrets.DEV_USER }}@${{ secrets.DEV_IP }} "cd /opt/temp-validation && docker compose down && docker compose up -d --build"
