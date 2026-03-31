@@ -10,7 +10,7 @@ def simulate_temperature_readings():
     # Simulate readings from 10 different sensors
     sensor_id = f'sensor_{random.randint(1, 10)}'
     while True:
-        temperature = round(random.uniform(40, 90), 2)  # Simulate temperature between 40 and 80
+        temperature = round(random.uniform(40, 95), 2)  # Simulate temperature between 40 and 80
         data = {
             'sensor_id': sensor_id,
             'temperature': temperature
