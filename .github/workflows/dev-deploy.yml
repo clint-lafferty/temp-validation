@@ -18,4 +18,4 @@ jobs:
       - name: Sync and Rebuild Containers
         run: |
           rsync -avz --delete --exclude 'pgdata/' ./ ${{ secrets.DEV_USER }}@${{ secrets.DEV_IP }}:/opt/temp-validation/
-          ssh ${{ secrets.DEV_USER }}@${{ secrets.DEV_IP }} "cd ~/temp-validation && docker compose down && docker compose up -d --build"
+          ssh ${{ secrets.DEV_USER }}@${{ secrets.DEV_IP }} "cd /opt/temp-validation && docker compose down && docker compose up -d --build"
