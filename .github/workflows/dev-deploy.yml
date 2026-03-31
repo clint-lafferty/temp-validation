@@ -17,8 +17,7 @@ jobs:
 
       - name: Sync and Rebuild Containers
         run: |
-          # Keep this on one line to avoid hidden space errors
-          rsync -avz --delete --exclude 'pgdata/' --exclude '.git/' --exclude '.env' ./ ${{ secrets.DEV_USER }}@${{ secrets.DEV_IP }}:/opt/temp-validation/
+          # Add --exclude '__pycache__/' to the list
+          rsync -avz --delete --exclude 'pgdata/' --exclude '.git/' --exclude '.env' --exclude '__pycache__/' ./ ${{ secrets.DEV_USER }}@${{ secrets.DEV_IP }}:/opt/temp-validation/
           
-          # Run the remote commands
           ssh ${{ secrets.DEV_USER }}@${{ secrets.DEV_IP }} "cd /opt/temp-validation && docker compose down && docker compose up -d --build"
