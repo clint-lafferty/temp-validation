@@ -3,6 +3,7 @@ import time
 import random
 import os
 
+## Ingestor URL can be set via environment variable or defaults to http://ingestor:5000/ingest
 INGEST_URL = os.getenv('INGESTOR_URL', 'http://ingestor:5000/ingest')
 
 def simulate_temperature_readings():
