@@ -39,7 +39,7 @@ The application also uses a PostgreSQL DB. The three services listed above are c
 | **Hypervisor** | VMWare ESXi 6.7 |
 | **Runtime** | Docker / Docker Compose |
 | **Database** | PostgreSQL 18.3 |
-| **Backend** | Python 3.12 / Flask |
+| **Backend** | Python 3.9 / Flask |
 | **Virtualization** | Docker & Docker Compose|
 
 ### Lessons learned:
