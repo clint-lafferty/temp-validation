@@ -20,4 +20,4 @@ jobs:
           # Add --exclude '__pycache__/' to the list
           rsync -avzc --delete --exclude 'pgdata/' --exclude '.git/' --exclude '.env' --exclude '__pycache__/' ./ ${{ secrets.DEV_USER }}@${{ secrets.DEV_IP }}:/opt/temp-validation/
           
-          ssh ${{ secrets.DEV_USER }}@${{ secrets.DEV_IP }} "cd /opt/temp-validation && docker compose down && docker compose up -d --build"
+          ssh ${{ secrets.DEV_USER }}@${{ secrets.DEV_IP }} "cd /opt/temp-validation && docker compose down && docker system prune -f && docker compose up -d --build"
