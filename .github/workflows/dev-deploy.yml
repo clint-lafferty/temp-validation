@@ -1,0 +1,18 @@
+name: Dev Auto Deploy
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  deploy-to-dev-server:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Sync and Rebuild Containers
+        run: |
+          rsync -avz --delete ./ ${{ secrets.DEV_USER }}@${{ secrets.DEV_IP }}:/opt/temp-validator/
+          ssh ${{ secrets.DEV_USER }}@${{ secrets.DEV_IP }} "cd ~/temp-validator && docker compose down && docker compose up -d --build"
