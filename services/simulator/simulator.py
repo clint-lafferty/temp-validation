@@ -8,7 +8,7 @@ INGEST_URL = os.getenv('INGESTOR_URL', 'http://ingestor:5000/ingest')
 def simulate_temperature_readings():
     sensor_id = f'sensor_{random.randint(1, 10)}'
     while True:
-        temperature = round(random.uniform(-10, 50), 2)  # Simulate temperature between -10 and 50
+        temperature = round(random.uniform(40, 80), 2)  # Simulate temperature between 40 and 80
         data = {
             'sensor_id': sensor_id,
             'temperature': temperature

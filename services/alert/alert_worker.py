@@ -10,7 +10,7 @@ def check_for_alerts():
     with engine.connect() as connection:
         result = connection.execute(text("SELECT * FROM temp_readings WHERE status IN ('critical', 'low')"))
         for alert in result.mappings():
-            print(f"ALERT: Sensor {alert['sensor_id']} reported {alert['temperature']}°C at {alert['timestamp']} with status {alert['status']}")
+            print(f"ALERT: Sensor {alert['sensor_id']} reported {alert['temperature']}°F at {alert['timestamp']} with status {alert['status']}")
 
 if __name__ == "__main__":
     while True:
