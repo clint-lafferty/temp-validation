@@ -1,1 +1,1 @@
-
+Purpose of phase is to build a k3s orchestration cluster as a staging process before pushing to AWS to ensure the application isn't broken and build a CI/CD pipeline to rebuild the cluster upon merging to staging branch.
