@@ -13,9 +13,9 @@ Enable seamless development and testing for a pre-AWS environment
 
 ---
 ## Current Progress:
-[x] Provisioning of staging nodes
-[x] Namespace and Secrets
-[x] Postgres Deployment and Service
-[] Ingestor Service Deployment
-[] Alert Service Deployment
-[] Simulator Deployment
+* [x] Provisioning of staging nodes
+* [x] Namespace and Secrets
+* [x] Postgres Deployment and Service
+* [] Ingestor Service Deployment
+* [] Alert Service Deployment
+* [] Simulator Deployment
