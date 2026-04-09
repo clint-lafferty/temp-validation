@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ingestor-config
+  namespace: temp-validation
+data:
+  DB_HOST: "postgres-service"
+  DB_PORT: "5432"
+  DB_NAME: "sensor_data"
+  DB_USER: "iot_user"
+  TEMP_THRESHOLD_HIGH: "78.0"
+  TEMP_THRESHOLD_LOW: "60.0"
+  INGESTOR_URL: "http://ingestor:8080/ingest"
+  ALERT_URL: "http://alert:8080/alert"

@@ -6,11 +6,17 @@ def create_app():
     app = Flask(__name__)
     
     # Configure the database URI
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'postgresql://postgres:postgres@db:5432/ingestor')
+    user = os.getenv('DB_USER', 'iot_user')
+    password = os.getenv('DB_PASSWORD')
+    host = os.getenv('DB_HOST')
+    port = os.getenv('DB_PORT')
+    name = os.getenv('DB_NAME')
+
+    TEMP_CRITICAL = float(os.getenv('TEMP_THRESHOLD_CRITICAL'))
+    TEMP_LOW = float(os.getenv('TEMP_THRESHOLD_LOW'))
+
+    app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{user}:{password}@{host}:{port}/{name}'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    
-    TEMP_HIGH = float(os.getenv('TEMP_THRESHOLD_CRITICAL'))
-    TEMP_LOW = float(os.getenv('TEMP_THRESHOLD_low'))
 
     # Initialize the database
     from models import db

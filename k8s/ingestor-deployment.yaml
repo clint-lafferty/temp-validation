@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ingestor-deployment
+  namespace: temp-validation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ingestor
+  template:
+    metadata:
+      labels:
+        app: ingestor
+    spec:
+      containers:
+      - name: ingestor
+        image: ingestor:latest
+        ports:
+        - containerPort: 8080
+        envFrom:
+        - configMapRef:
+            name: ingestor-config
+        env:
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-credentials
+              key: password
